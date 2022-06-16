@@ -2,6 +2,7 @@ package org.generation.doctorfy.controller;
 
 import java.util.List;
 
+import org.generation.doctorfy.model.EnfermedadEspecialidad;
 import org.generation.doctorfy.model.Usuario;
 import org.generation.doctorfy.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +46,11 @@ public final UsuarioService usuarioService;
 			@RequestParam(required = false) String newPasword) {
 		usuarioService.updateUsuario(id, currentPassword, newPasword);
 	}
-	/*
 	@PutMapping(path = "completarPerfil/{id}")
 	public void completarPerfil( @PathVariable("id") Long id,
 			@RequestParam(required = false) String nombre,
 			@RequestParam(required = false) String apellidoPaterno,
+			@RequestParam(required = false) String apellidoMaterno,
 			@RequestParam(required = false) String correo,
 			@RequestParam(required = false) String calle,
 			@RequestParam(required = false) String colonia,
@@ -60,15 +61,15 @@ public final UsuarioService usuarioService;
 			@RequestParam(required = false) String cedula,
 			@RequestParam(required = false) String descripcionCorta,
 			@RequestParam(required = false) String biografia,
-			@RequestParam(required = false) String contador,
-			@RequestParam(required = false) String promedio,
+			@RequestParam(required = false) Long contador,
+			@RequestParam(required = false) Double promedio,
 			@RequestParam(required = false) String whatsapp,
 			@RequestParam(required = false) String universidad,
 			@RequestParam(required = false) String universidadEspecialidad,
 			@RequestParam(required = false) String cedulaEspecial,
 			@RequestParam(required = false) String especialidad,
-			@RequestParam(required = false) String EnfermedadEspecialidad enfermedadEspecialidad
+			@RequestParam(required = false) EnfermedadEspecialidad enfermedadEspecialidad
 			) {
-		usuarioService.completarPerfil(id, currentPassword, newPasword);
-	}*/
+		usuarioService.completarPerfil(id, nombre, apellidoPaterno,apellidoMaterno,correo,calle,colonia,ciudad,estado,telefono,fotoPerfil,cedula,descripcionCorta,biografia, contador,promedio,whatsapp,universidad,universidadEspecialidad,cedulaEspecial,especialidad,enfermedadEspecialidad);
+	}
 }

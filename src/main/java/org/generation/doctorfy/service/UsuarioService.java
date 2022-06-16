@@ -3,6 +3,7 @@ package org.generation.doctorfy.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.generation.doctorfy.model.EnfermedadEspecialidad;
 import org.generation.doctorfy.model.Usuario;
 import org.generation.doctorfy.utils.SHAUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,4 +87,41 @@ public class UsuarioService {
 		
 	}
 
+	public void completarPerfil(Long id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
+			String calle, String colonia, String ciudad, String estado, String telefono, String fotoPerfil,
+			String cedula, String descripcionCorta, String biografia, Long contador, Double promedio, String whatsapp,
+			String universidad, String universidadEspecialidad, String cedulaEspecial, String especialidad,
+			EnfermedadEspecialidad enfermedadEspecialidad) {
+		// TODO Auto-generated method stub
+		
+		
+		if (usuarioRepository.findById(id) != null) {
+			Usuario user = usuarioRepository.findById(id).get();
+			if(nombre != null) user.setNombre(nombre);
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);			
+			if(apellidoMaterno != null) user.setApellidoMaterno(apellidoMaterno);	
+			if(correo != null) user.setCorreo(correo);	
+			if(cedula != null) user.setCedula(cedulaEspecial);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			
+		}
+		
+	}
+
 }
+
+
+
+
+
+
+
