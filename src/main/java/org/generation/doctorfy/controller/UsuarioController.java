@@ -45,4 +45,30 @@ public final UsuarioService usuarioService;
 			@RequestParam(required = false) String newPasword) {
 		usuarioService.updateUsuario(id, currentPassword, newPasword);
 	}
+	/*
+	@PutMapping(path = "completarPerfil/{id}")
+	public void completarPerfil( @PathVariable("id") Long id,
+			@RequestParam(required = false) String nombre,
+			@RequestParam(required = false) String apellidoPaterno,
+			@RequestParam(required = false) String correo,
+			@RequestParam(required = false) String calle,
+			@RequestParam(required = false) String colonia,
+			@RequestParam(required = false) String ciudad,
+			@RequestParam(required = false) String estado,
+			@RequestParam(required = false) String telefono,
+			@RequestParam(required = false) String fotoPerfil,
+			@RequestParam(required = false) String cedula,
+			@RequestParam(required = false) String descripcionCorta,
+			@RequestParam(required = false) String biografia,
+			@RequestParam(required = false) String contador,
+			@RequestParam(required = false) String promedio,
+			@RequestParam(required = false) String whatsapp,
+			@RequestParam(required = false) String universidad,
+			@RequestParam(required = false) String universidadEspecialidad,
+			@RequestParam(required = false) String cedulaEspecial,
+			@RequestParam(required = false) String especialidad,
+			@RequestParam(required = false) String EnfermedadEspecialidad enfermedadEspecialidad
+			) {
+		usuarioService.completarPerfil(id, currentPassword, newPasword);
+	}*/
 }
