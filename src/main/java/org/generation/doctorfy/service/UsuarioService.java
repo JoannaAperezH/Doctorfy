@@ -55,4 +55,35 @@ public class UsuarioService {
 		return result;
 	}
 
+	public void updateUsuario(Long id, String currentPassword, String newPassword) {
+		// TODO Auto-generated method stub
+		
+		//Usuario user = usuarioRepository.findById(id).get();
+		/*System.out.println(SHAUtil.verifyHash(currentPassword, user.getPassword()));
+		System.out.println(! SHAUtil.verifyHash(newPassword, user.getPassword()));*/
+		
+		//String hash = SHAUtil.createHash(user.getPassword());
+		
+		if (usuarioRepository.findById(id) != null) { //si el usuario existe...
+			Usuario user = usuarioRepository.findById(id).get(); //traemos al usuario por id
+			
+			if ((newPassword !=null) && (currentPassword !=null)) { //si las dos contrasenias son diferentes de null...
+				//si el usuario existe, y las contrasenias son distintas de nullo, entonces encriptamos
+				
+				if ( (SHAUtil.verifyHash(currentPassword, user.getPassword() ) ) &&  //contrasenia actual (viene BD)
+					(! SHAUtil.verifyHash(newPassword, user.getPassword()) ) ) { //nueva contrasenia (input del formulario)
+					user.setPassword(SHAUtil.createHash(newPassword));	
+					usuarioRepository.save(user); //guardo la nueva contrasenia
+				} else {
+					throw new IllegalStateException("Contraseña incorrecta");	
+				}//else // if equals
+			}else {
+				throw new IllegalStateException("Contraseñas nulas");	
+			}//else  // !=null
+		}else {
+			throw new IllegalStateException("Usuario no encontrado " + id);	
+		}//else //if existsById
+		
+	}
+
 }
