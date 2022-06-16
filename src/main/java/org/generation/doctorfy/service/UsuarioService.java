@@ -31,12 +31,28 @@ public class UsuarioService {
 			Usuario usuario = new Usuario();
 			usuario.setNombre(us.getNombre());
 			usuario.setApellidoPaterno(us.getApellidoPaterno());
+			usuario.setApellidoMaterno(us.getApellidoMaterno());
 			usuario.setCorreo(us.getCorreo());
 			if(us.getEspecialidad() != null) usuario.setEspecialidad(us.getEspecialidad());
 			String passHash = SHAUtil.createHash(us.getPassword());
 			usuario.setPassword(passHash);
 			usuarioRepository.save(usuario);
 		}
+	}
+
+	public boolean login(String correo, String password) {
+		// TODO Auto-generated method stub
+		boolean result = false;
+		
+		Optional<Usuario> u = usuarioRepository.findByEmail(correo);
+		
+		if(u.isPresent()) {
+			//verificar el password
+			result = SHAUtil.verifyHash(password, u.get().getPassword());
+		}
+		
+		
+		return result;
 	}
 
 }
