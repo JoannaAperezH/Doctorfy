@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/login")
+@RequestMapping(path = "/api/login/")
 @CrossOrigin(origins = "*")
 public class LoginController {
 	
@@ -33,6 +33,8 @@ public class LoginController {
 		
 		return result;
 	}
+	
+	
 }
 
 
