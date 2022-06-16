@@ -46,7 +46,6 @@ public class Usuario {
 	
 	@ManyToOne
 	@JoinColumn(name = "especialidad_fk_usuario")
-	//@Column(name = "especialidad_fk_usuario")
 	private EnfermedadEspecialidad enfermedadEspecialidad;
 
 	public Usuario(Long id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
