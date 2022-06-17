@@ -28,7 +28,9 @@ public class LoginController {
 				+ "\"message\": \"Password o usuario incorrecto\" }";
 		
 		if(usuarioService.login( usuario.getCorreo(), usuario.getPassword() )) {
-			result = "{\"StatusCode\": \"Ok\" }";
+			Usuario  us = usuarioService.getUsuarioByEmail(usuario.getCorreo());
+			result = "{\"StatusCode\": \"Ok\","
+					+ " \"idUser\": \""+ us.getId() +"\"}";
 		}
 		
 		return result;

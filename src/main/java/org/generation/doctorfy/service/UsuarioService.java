@@ -23,22 +23,25 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 
-	public void signIn(Usuario us) {
+	public boolean signIn(Usuario us) {
 		// TODO Auto-generated method stub
+		boolean result = false;
 		Optional<Usuario> u = usuarioRepository.findByEmail(us.getCorreo());
 		if(u.isPresent()) {
 			throw new IllegalStateException("El usuario ya existe");
 		}else {
-			Usuario usuario = new Usuario();
+			/*Usuario usuario = new Usuario();
 			usuario.setNombre(us.getNombre());
 			usuario.setApellidoPaterno(us.getApellidoPaterno());
 			usuario.setApellidoMaterno(us.getApellidoMaterno());
 			usuario.setCorreo(us.getCorreo());
-			if(us.getEspecialidad() != null) usuario.setEspecialidad(us.getEspecialidad());
+			if(us.getEspecialidad() != null) usuario.setEspecialidad(us.getEspecialidad());*/
 			String passHash = SHAUtil.createHash(us.getPassword());
-			usuario.setPassword(passHash);
-			usuarioRepository.save(usuario);
+			us.setPassword(passHash);
+			usuarioRepository.save(us);
+			result = true;
 		}
+		return result;
 	}
 
 	public boolean login(String correo, String password) {
@@ -56,14 +59,10 @@ public class UsuarioService {
 		return result;
 	}
 
-	public void updateUsuario(Long id, String currentPassword, String newPassword) {
+	public boolean updateUsuario(Long id, String currentPassword, String newPassword) {
 		// TODO Auto-generated method stub
 		
-		//Usuario user = usuarioRepository.findById(id).get();
-		/*System.out.println(SHAUtil.verifyHash(currentPassword, user.getPassword()));
-		System.out.println(! SHAUtil.verifyHash(newPassword, user.getPassword()));*/
-		
-		//String hash = SHAUtil.createHash(user.getPassword());
+		boolean result = false;
 		
 		if (usuarioRepository.findById(id) != null) { //si el usuario existe...
 			Usuario user = usuarioRepository.findById(id).get(); //traemos al usuario por id
@@ -75,6 +74,7 @@ public class UsuarioService {
 					(! SHAUtil.verifyHash(newPassword, user.getPassword()) ) ) { //nueva contrasenia (input del formulario)
 					user.setPassword(SHAUtil.createHash(newPassword));	
 					usuarioRepository.save(user); //guardo la nueva contrasenia
+					result = true;
 				} else {
 					throw new IllegalStateException("Contraseña incorrecta");	
 				}//else // if equals
@@ -85,14 +85,18 @@ public class UsuarioService {
 			throw new IllegalStateException("Usuario no encontrado " + id);	
 		}//else //if existsById
 		
+		return result;
+		
 	}
 
-	public void completarPerfil(Long id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
+	public boolean completarPerfil(Long id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
 			String calle, String colonia, String ciudad, String estado, String telefono, String fotoPerfil,
 			String cedula, String descripcionCorta, String biografia, Long contador, Double promedio, String whatsapp,
 			String universidad, String universidadEspecialidad, String cedulaEspecial, String especialidad,
 			EnfermedadEspecialidad enfermedadEspecialidad) {
 		// TODO Auto-generated method stub
+		
+		boolean result = false;
 		
 		
 		if (usuarioRepository.findById(id) != null) {
@@ -110,17 +114,27 @@ public class UsuarioService {
 			if(cedula != null) user.setCedula(cedulaEspecial);	
 			if(descripcionCorta != null) user.setDescripcionCorta(descripcionCorta);	
 			if(biografia != null) user.setBiografia(biografia);	
-			if(contador != null) user.setContador(contador);	
-			if(promedio != null) user.setPromedio(promedio);	
-			if(whatsapp != null) user.setWhatsapp(apellidoPaterno);	
+			if(whatsapp != null) user.setWhatsapp(whatsapp);	
 			if(universidad != null) user.setUniversidad(universidad);	
 			if(universidadEspecialidad != null) user.setUniversidadEspecialidad(universidadEspecialidad);	
 			if(cedulaEspecial != null) user.setCedulaEspecial(cedulaEspecial);	
 			if(especialidad != null) user.setEspecialidad(especialidad);	
 			if(enfermedadEspecialidad != null) user.setEnfermedadEspecialidad(enfermedadEspecialidad);	
 			
+			usuarioRepository.save(user);
+			result = true;
 		}
-		
+		return result;
+	}
+
+	public Usuario getUsuario(Long id) {
+		// TODO Auto-generated method stub
+		return usuarioRepository.findById(id).get();
+	}
+
+	public Usuario getUsuarioByEmail(String correo) {
+		// TODO Auto-generated method stub
+		return usuarioRepository.findByEmail(correo).get();
 	}
 
 }
