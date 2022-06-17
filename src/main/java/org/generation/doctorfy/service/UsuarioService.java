@@ -104,17 +104,23 @@ public class UsuarioService {
 			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);			
 			if(apellidoMaterno != null) user.setApellidoMaterno(apellidoMaterno);	
 			if(correo != null) user.setCorreo(correo);	
+			if(calle != null) user.setCalle(calle);	
+			if(colonia != null) user.setColonia(colonia);	
+			if(ciudad != null) user.setCiudad(ciudad);	
+			if(estado!=null) user.setEstado(estado);
+			if(telefono != null) user.setTelefono(telefono);
+			if(fotoPerfil!=null) user.setFotoPerfil(fotoPerfil);
 			if(cedula != null) user.setCedula(cedulaEspecial);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
-			if(apellidoPaterno != null) user.setApellidoPaterno(apellidoPaterno);	
+			if(descripcionCorta != null) user.setDescripcionCorta(descripcionCorta);	
+			if(biografia != null) user.setBiografia(biografia);	
+			if(contador != null) user.setContador(contador);	
+			if(promedio != null) user.setPromedio(promedio);	
+			if(whatsapp != null) user.setWhatsapp(apellidoPaterno);	
+			if(universidad != null) user.setUniversidad(universidad);	
+			if(universidadEspecialidad != null) user.setUniversidadEspecialidad(universidadEspecialidad);	
+			if(cedulaEspecial != null) user.setCedulaEspecial(cedulaEspecial);	
+			if(especialidad != null) user.setEspecialidad(especialidad);	
+			if(enfermedadEspecialidad != null) user.setEnfermedadEspecialidad(enfermedadEspecialidad);	
 			
 		}
 		
