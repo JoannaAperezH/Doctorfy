@@ -23,22 +23,25 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 
-	public void signIn(Usuario us) {
+	public boolean signIn(Usuario us) {
 		// TODO Auto-generated method stub
+		boolean result = false;
 		Optional<Usuario> u = usuarioRepository.findByEmail(us.getCorreo());
 		if(u.isPresent()) {
 			throw new IllegalStateException("El usuario ya existe");
 		}else {
-			Usuario usuario = new Usuario();
+			/*Usuario usuario = new Usuario();
 			usuario.setNombre(us.getNombre());
 			usuario.setApellidoPaterno(us.getApellidoPaterno());
 			usuario.setApellidoMaterno(us.getApellidoMaterno());
 			usuario.setCorreo(us.getCorreo());
-			if(us.getEspecialidad() != null) usuario.setEspecialidad(us.getEspecialidad());
+			if(us.getEspecialidad() != null) usuario.setEspecialidad(us.getEspecialidad());*/
 			String passHash = SHAUtil.createHash(us.getPassword());
-			usuario.setPassword(passHash);
-			usuarioRepository.save(usuario);
+			us.setPassword(passHash);
+			usuarioRepository.save(us);
+			result = true;
 		}
+		return result;
 	}
 
 	public boolean login(String correo, String password) {

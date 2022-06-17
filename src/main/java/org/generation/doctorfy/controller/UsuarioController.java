@@ -36,8 +36,23 @@ public final UsuarioService usuarioService;
 	
 	
 	@PostMapping(path = "signIn")
-	public void signIn(@RequestBody Usuario usuario) {
-		this.usuarioService.signIn(usuario);
+	public String signIn(@RequestBody Usuario us) {
+		String result = "{"
+				+ "\"StatusCode\": \"Error\","
+				+ "\"message\": \"El usuario ya existe\" }";
+
+		Usuario usuario = new Usuario();
+		usuario.setNombre(us.getNombre());
+		usuario.setApellidoPaterno(us.getApellidoPaterno());
+		usuario.setApellidoMaterno(us.getApellidoMaterno());
+		usuario.setCorreo(us.getCorreo());
+		usuario.setPassword(us.getPassword());
+		if(us.getEspecialidad() != null) usuario.setEspecialidad(us.getEspecialidad());
+		
+		if(this.usuarioService.signIn(usuario)) {
+			result = "{\"StatusCode\": \"Ok\" }";
+		}
+		return result;
 	}
 	
 	@PutMapping(path = "{id}")
